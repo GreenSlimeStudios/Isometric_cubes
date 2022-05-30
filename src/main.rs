@@ -8,8 +8,8 @@ const ORIGINAL_ANIMATION:bool = true;
 #[macroquad::main("Texture")]
 async fn main() {
     //Here declare the x axis and the y axis of the isometric plane
-    let xax = 16;
-    let yax =16;
+    let xax = 26;
+    let yax = 26;
 
     let mut cubes:Vec<Cube> = Vec::new();
     for i in 0..xax{
@@ -36,27 +36,9 @@ async fn main() {
                     WHITE,
                 );
                 if WAVE{
-                    // if i == 1{   
-                    //     up_down(&mut cubes[i*yax+j]);
-                    // }
-                    // else if frame > 5 && i == 2{
-                    //     up_down(&mut cubes[i*yax+j]);
-                    // }
-                    // else if frame > 10 && i == 3{
-                    //     up_down(&mut cubes[i*yax+j]);
-                    // }
-                    // else if frame > 20 && i == 4{
-                    //     up_down(&mut cubes[i*yax+j]);
-                    // }
-                    // else if frame > 30 && i == 5{
-                    //     up_down(&mut cubes[i*yax+j]);
-                    // }
-                    // else if frame > 40 && i == 6{
-                    //     up_down(&mut cubes[i*yax+j]);
-                    // }
                     for k in 0..yax{
                         if i == k{   
-                            if frame > k*2{
+                            if frame > k*1{
                                 up_down(&mut cubes[(i*yax+j) as usize]);
                             }
                         }
