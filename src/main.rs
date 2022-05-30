@@ -1,7 +1,9 @@
 
 use macroquad::prelude::*;
 
-const STRANGE_THINGS:bool = true;
+const STRANGE_THINGS:bool = false;
+const WAVE:bool = true;
+const ORIGINAL_ANIMATION:bool = true;
 
 #[macroquad::main("Texture")]
 async fn main() {
@@ -33,13 +35,40 @@ async fn main() {
                     y,
                     WHITE,
                 );
+                if WAVE{
+                    // if i == 1{   
+                    //     up_down(&mut cubes[i*yax+j]);
+                    // }
+                    // else if frame > 5 && i == 2{
+                    //     up_down(&mut cubes[i*yax+j]);
+                    // }
+                    // else if frame > 10 && i == 3{
+                    //     up_down(&mut cubes[i*yax+j]);
+                    // }
+                    // else if frame > 20 && i == 4{
+                    //     up_down(&mut cubes[i*yax+j]);
+                    // }
+                    // else if frame > 30 && i == 5{
+                    //     up_down(&mut cubes[i*yax+j]);
+                    // }
+                    // else if frame > 40 && i == 6{
+                    //     up_down(&mut cubes[i*yax+j]);
+                    // }
+                    for k in 0..yax{
+                        if i == k{   
+                            if frame > k*2{
+                                up_down(&mut cubes[(i*yax+j) as usize]);
+                            }
+                        }
+                    }
+                }
                 //===================================================
                 if STRANGE_THINGS {
                     if i % 5 == 0 || j % 3 == 0{   
-                        up_down(&mut cubes[i*yax+j]);
+                        up_down(&mut cubes[(i*yax+j) as usize]);
                     }
                     else if frame > 15 {
-                        up_down(&mut cubes[i*yax+j]);
+                        up_down(&mut cubes[(i*yax+j) as usize]);
                     }
                 }
                 fn up_down(cube:&mut Cube){
@@ -60,132 +89,134 @@ async fn main() {
                 }
                 //=================================================
 
-
-                if frame >= 480 && frame < 520{
-
-                    if i % 5 == 0 || j % 5 ==0{
-                        cubes[i*yax+j].updatex();
+                if ORIGINAL_ANIMATION{
+                    let mut cube:&mut Cube = &mut cubes[(i*yax+j) as usize];
+                    if frame >= 480 && frame < 520{
+                        
+                        if i % 5 == 0 || j % 5 ==0{
+                            cube.updatex();
+                        }
+                        else {
+                            cube.updatey();
+                        }
                     }
+                    if frame >= 520 && frame < 560{
+                        
+                        if i % 5 == 0 || j % 5 ==0{
+                            cube.updatez();
+                        }
+                        else {
+                            cube.updatezm();
+                        }
+                    }
+                    if frame >= 560 && frame < 580{
+                        
+                        if i % 5 == 0 || j % 5 ==0{
+                            cube.updatexm();
+                        }
                     else {
-                        cubes[i*yax+j].updatey();
-                    }
-                }
-                if frame >= 520 && frame < 560{
-
-                    if i % 5 == 0 || j % 5 ==0{
-                        cubes[i*yax+j].updatez();
-                    }
-                    else {
-                        cubes[i*yax+j].updatezm();
-                    }
-                }
-                if frame >= 560 && frame < 580{
-
-                    if i % 5 == 0 || j % 5 ==0{
-                        cubes[i*yax+j].updatexm();
-                    }
-                    else {
-                        cubes[i*yax+j].updateym();
+                        cube.updateym();
                     }
                 }
                 if frame >= 580 && frame < 600{
-
+                    
                     if i % 5 == 0 || j % 5 ==0{
-                        cubes[i*yax+j].updatezm();
+                        cube.updatezm();
                     }
                     else {
-                        cubes[i*yax+j].updatez();
+                        cube.updatez();
                     }
                 }
                 if frame >= 620 && frame < 640{
-
+                    
                     if i % 5 == 0 || j % 5 ==0{
-                        cubes[i*yax+j].updatezm();
+                        cube.updatezm();
                     }
                     else {
-                        cubes[i*yax+j].updatez();
+                        cube.updatez();
                     }
                 }
                 if frame >= 660 && frame < 670{
-
+                    
                     if i % 5 == 0 || j % 5 ==0{
-                        cubes[i*yax+j].updatez();
+                        cube.updatez();
                     }
                     else {
-                        cubes[i*yax+j].updatezm();
+                        cube.updatezm();
                     }
                 }
                 if frame >= 20 && frame < 80{
-
+                    
                     if i % 2 == 0{
                         
-                        cubes[i*yax+j].updatey();
+                        cube.updatey();
                     }
                     else {
-                        cubes[i*yax+j].updatex();
+                        cube.updatex();
                     }
                 }
                 if frame >= 80 && frame < 140{
-
+                    
                     if j % 2 == 0{
                         
-                        cubes[i*yax+j].updatex();
+                        cube.updatex();
                     }
                     else {
-                        cubes[i*yax+j].updatey();
+                        cube.updatey();
                     }
                 }
                 if frame >= 180 && frame < 240{
-
+                    
                     if j % 2 == 0{
                         
-                        cubes[i*yax+j].updatexm();
+                        cube.updatexm();
                     }
                     else {
-                        cubes[i*yax+j].updateym();
+                        cube.updateym();
                     }
                 }
                 if frame >= 180 && frame < 240{
-
+                    
                     if i % 2 == 0{
                         
-                        cubes[i*yax+j].updatexm();
+                        cube.updatexm();
                     }
                     else {
-                        cubes[i*yax+j].updateym();
+                        cube.updateym();
                     }
                 }
                 if frame >= 260 && frame < 380{
-
+                    
                     if i % 2 == 0{
                         
-                        cubes[i*yax+j].updatex();
+                        cube.updatex();
                     }
                     else {
-                        cubes[i*yax+j].updatey();
+                        cube.updatey();
                     }
                 }
                 if frame >= 420 && frame < 450{
-
+                    
                     if j % 2 == 0{
                         
-                        cubes[i*yax+j].updatexm();
+                        cube.updatexm();
                     }
                     else {
-                        cubes[i*yax+j].updateym();
+                        cube.updateym();
                     }
                 }
                 if frame >= 450 && frame < 480{
-
+                    
                     if j % 2 != 0{
                         
-                        cubes[i*yax+j].updatexm();
+                        cube.updatexm();
                     }
                     else {
-                        cubes[i*yax+j].updateym();
+                        cube.updateym();
                     }
                 }
-
+            }
+                
             }
         
         }
